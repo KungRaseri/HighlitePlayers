@@ -12,7 +12,8 @@ function initialize()
         Player():registerCallback("onPreRenderHud", "onPreRenderHud")
     end
     if onServer() then
-    	invokeClientFunction(Player().index, "initialize")
+    	invokeClientFunction(Player(), "initialize")
+    end
 end
 
 function onSectorEntered(player, x, y)
