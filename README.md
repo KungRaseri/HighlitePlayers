@@ -1,3 +1,3 @@
 # HighlitePlayers
 
-Will highlite any manned ships in a sector with a bright green indicator.
+Will highlite any manned ships in a sector with a bright purple indicator.
