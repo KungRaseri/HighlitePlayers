@@ -8,23 +8,29 @@ end
 
 function onPreRenderHud()
 
-    local nearby = {Sector():getEntitiesByType(EntityType.Ship)}
+    local allShips = {Sector():getEntitiesByType(EntityType.Ship)}
     local displayed = {}
-    for _, entity in pairs(nearby) do
-        if entity:isManned() then
+    for _, entity in pairs(allShips) do
+        local faction = Faction(entity.factionIndex)
+        if faction.isPlayer then
+            local player = Player(faction.index)
+            if player.craftIndex == entity.index then
+                return
+            end
             table.insert(displayed, {ship = entity})
+            print(Faction(entity.factionIndex).isPlayer)
         end
 
     end
-    -- display nearest x
+    --print("Displaying %s ships", #displayed)
     local renderer = UIRenderer()
 
     for i = 1, #displayed do
         local tuple = displayed[i]
         -- uncomment to render targeter
-        -- renderer:renderEntityTargeter(tuple.ship, ColorRGB(94,243,32), 0);
+        -- renderer:renderEntityTargeter(tuple.ship, ColorRGB(1,0,1), 0);
         -- comment if you don't like the an arrow
-        renderer:renderEntityArrow(tuple.ship, 30, 10, 250, ColorRGB(94,243,32), 0);
+        renderer:renderEntityArrow(tuple.ship, 30, 10, 250, ColorRGB(1,0,1), 0);
     end
 
     renderer:display()
