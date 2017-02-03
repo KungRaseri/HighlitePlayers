@@ -10,16 +10,12 @@ function onPreRenderHud()
 
     local nearby = {Sector():getEntitiesByType(EntityType.Ship)}
     local displayed = {}
-    print(#nearby)
     for _, entity in pairs(nearby) do
---        if entity:isManned() then
-
-
+        if entity:isManned() then
             table.insert(displayed, {ship = entity})
---        end
+        end
 
     end
-    print(#displayed)
     -- display nearest x
     local renderer = UIRenderer()
 
