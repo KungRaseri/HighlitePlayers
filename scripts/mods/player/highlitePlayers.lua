@@ -10,15 +10,11 @@ function onPreRenderHud()
 
     local allShips = {Sector():getEntitiesByType(EntityType.Ship)}
     local displayed = {}
+    local player = Player()
     for _, entity in pairs(allShips) do
         local faction = Faction(entity.factionIndex)
         if faction.isPlayer then
-            local player = Player(faction.index)
-            if player.craftIndex == entity.index then
-                return
-            end
             table.insert(displayed, {ship = entity})
-            print(Faction(entity.factionIndex).isPlayer)
         end
 
     end
